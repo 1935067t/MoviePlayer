@@ -8,9 +8,14 @@ using UnityEngine.Video;
 
 public class VideoBase : MonoBehaviour, EventCaller
 {
-    protected VideoPlayer[] mPlayers;
+    protected VideoPlayer mVideoPlayer;
+
     protected long mFrame = 0;
-    protected int mCounter = 0;
+    protected double mTime;
+    protected int mUrlIdx;
+    protected bool mIsPlaying;
+    protected bool mIsLooping;
+
     protected bool mActive = false;
 
     [SerializeField] protected Material mMaterial;
@@ -48,30 +53,34 @@ public class VideoBase : MonoBehaviour, EventCaller
 
     void PlaySwitch()
     {
-        if(mPlayers[mCounter].isPlaying) mPlayers[mCounter].Pause();
+        if (mVideoPlayer.isPlaying) mVideoPlayer.Pause();
 
-        else mPlayers[mCounter].Play();
+        else mVideoPlayer.Play();
+
+        mIsPlaying = mVideoPlayer.isPlaying;
     }
 
     void Restart()
     {
-        mPlayers[mCounter].frame = 0;
+        mVideoPlayer.frame = 0;
     }
 
     void StepForward()
     {
-        mPlayers[mCounter].StepForward();
+        mVideoPlayer.StepForward();
     }
 
     void StepBackward()
     {
-        mPlayers[mCounter].frame--;
+        mVideoPlayer.frame--;
     }
 
     void SwitchLoop()
     {
-        mPlayers[mCounter].isLooping = mPlayers[mCounter].isLooping ? false : true;
-        mLoopBox.isOn = mPlayers[mCounter].isLooping;
+        mVideoPlayer.isLooping = mVideoPlayer.isLooping ? false : true;
+        mLoopBox.isOn = mVideoPlayer.isLooping;
+
+        mIsLooping = mVideoPlayer.isLooping;
     }
 
     //----------------外部との連携用の関数--------------------------
@@ -79,14 +88,14 @@ public class VideoBase : MonoBehaviour, EventCaller
     //ビデオ　から スライダー　へフレームを反映
     protected void SetFrameToSlider()
     {
-        mSlider.value = mPlayers[mCounter].frame;
+        mSlider.value = mVideoPlayer.frame;
     }
 
     //SliderControllerから呼ぶ
     //スライダーが操作されているときに動画を操作出来ないようにする
     public void WaitForSliderChanging()
     {
-        mPlayers[mCounter].Pause();
+        mVideoPlayer.Pause();
         mActive = false;
     }
 
@@ -94,13 +103,14 @@ public class VideoBase : MonoBehaviour, EventCaller
     //frame-1でいいか要チェック
     public void ReflectFrameFromSlider(int frame)
     {
-        mPlayers[mCounter].frame = frame;
+        mVideoPlayer.frame = frame;
         mActive = true;
     }
 
     //LoopBoxから呼ぶ
     public void IsLoop(bool loop)
     {
-        mPlayers[mCounter].isLooping = loop;
+        mVideoPlayer.isLooping = loop;
+        mIsLooping = loop;
     }
 }

@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0f385d6f3a8954f9be47696a5c1fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivityXY: 0.07
+  sensitivityXY: 0.1
   sensitivityZ: 0.5
 --- !u!1 &994092111
 GameObject:
@@ -745,6 +745,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6afe0f54adc874abbaa045c090af90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mFDSV: {fileID: 1397888706}
+  mCamera: {fileID: 963194227}
 --- !u!4 &994092113
 Transform:
   m_ObjectHideFlags: 0
@@ -929,10 +931,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3fdae8a5bf9a64c8a71b2e4c767972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mFrame: 0
+  mUrlIdx: 0
+  mIsPlaying: 0
+  mIsLooping: 0
   mMaterial: {fileID: 2100000, guid: 986204a3bbb8c0246958823337bef301, type: 2}
   mSlider: {fileID: 1588318875}
   mLoopBox: {fileID: 1936059377}
   mInfomationTxt: {fileID: 1937526863}
+  mManager: {fileID: 994092111}
 --- !u!4 &1397888708
 Transform:
   m_ObjectHideFlags: 0
