@@ -9,6 +9,8 @@ public class LoopBox : MonoBehaviour
     private Toggle mToggle;
 
     [SerializeField] private GameObject mFDSV;
+    [SerializeField] private GameObject mVideo;
+    [SerializeField] private GameObject mPicture;
     // Start is called before the first frame update
     void Start()
     {
