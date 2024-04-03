@@ -1,2 +1,2 @@
-## 4次元ストリートビュー用のアプリケーション
-![sample](sample.mp4)
+## 使い方
+https://github.com/1935067t/MoviePlayer/blob/main/sample.mp4
